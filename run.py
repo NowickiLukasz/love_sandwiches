@@ -60,7 +60,27 @@ def update_spreadsheet_data(data):
     print("Data has been updated")
 
 
-data = get_sales_data()
-sales_data = [int(num) for num in data]
-update_spreadsheet_data(sales_data)
+def calculate_surplus_data(row_data):
+    """
+    Calculate the amount of food that has been sold. 
+    
+    Negative figure is extra food was made
+    Possitive figure is too much food was made
+    """
+    print("Calculating surplus data..\n")
+    stock = SHEET.worksheet("stock").get_all_values()
+    stock_row = stock[-1]
+    print(stock_row)
+    
 
+def main():
+    """
+    Runs all functions in the program
+    """
+    data = get_sales_data()
+    sales_data = [int(num) for num in data]
+    update_spreadsheet_data(sales_data)
+    calculate_surplus_data(sales_data)
+
+print("welcome to Love Sandwiches Automation")
+main()
